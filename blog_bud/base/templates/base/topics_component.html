@@ -1,0 +1,15 @@
+<h2 class="header_h2">Browse Topics</h2>
+
+<div class="topic_component__container" id="topics_container">
+  {% for topic_info in topics_info %}
+  <div class="topic_component__wrapper">
+    {% if topic_info.name == "All" %}
+    <a href="{% url 'home' %}">{{topic_info.name}}</a>
+    <span class="topic_component__count_wrapper">{{topic_info.room_count}}</span>
+    {% else %}
+    <a href="{% url 'home' %}?q={{topic_info.name}}">{{topic_info.name}}</a>
+    <span class="topic_component__count_wrapper">{{topic_info.room_count}}</span>
+    {% endif %}
+  </div>
+  {% endfor %}
+</div>

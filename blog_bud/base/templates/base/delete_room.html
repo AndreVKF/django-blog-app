@@ -1,0 +1,22 @@
+{% extends "main.html" %}
+
+{% block body %}
+
+<div class="delete_room__container">
+  <form action="" method="POST" class="delete_room__form">
+    {% csrf_token %}
+    <p>Are you sure you want to delete <span>
+      {% if "delete-room" in request.path %}
+      room
+      {% else %}
+      comment
+      {% endif %}
+    </span> "{{obj}}" ?</p>
+    <div class="delete_room__button_wrapper">
+      <button class="primary_button"><a href="{{request.META.HTTP_REFERER}}">Go Back</a></button>
+      <button class="warning_button">Confirm</button>
+    </div>
+  </form>
+</div>
+  
+{% endblock body %}

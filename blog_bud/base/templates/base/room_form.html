@@ -1,0 +1,43 @@
+{% extends 'main.html' %}
+
+{% block body %}
+
+<div class="room_form__container">
+  
+  <div class="room_form__wrapper">
+    <form method="POST" action="" class="room_form__form_wrapper">
+      <h1>Create Room</h1>
+
+      {% csrf_token %}
+      
+      <div class="input_container input_form">
+        {{form.name}}
+      </div>
+  
+      <div class="input_container">
+        {{form.description}}
+      </div>
+  
+      <div class="input_container">
+        {{form.topic}}
+      </div>
+  
+      <button class="primary_button large_button room_form__form_submit">Submit</button>
+
+      {% if messages %}
+      <div class="alert_messages">
+        {% for message in messages %}
+        <p>{{message}}</p>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </form>
+
+    
+  </div>
+
+  
+
+</div>
+
+{% endblock body %} 

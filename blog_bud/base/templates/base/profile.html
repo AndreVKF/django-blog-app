@@ -1,0 +1,20 @@
+{% extends 'main.html' %}
+
+{% load static %}
+
+{% block body %}
+
+<section class="profile__container">
+  
+  <img class="profile__user_image" src="{% static 'images/user.svg' %}" alt="user image">
+
+  <h1 class="profile__user_username"">{{user.username}}</h1>
+  <h2 class="profile__user_email">{{user.email}}</h2>
+  <div class="profile__user_statistics">
+    <h2>Created rooms: <span>{{created_rooms}}</span></h2>
+    <h2>Messages sent: <span>{{messages_sent}}</span></h2>
+  </div>
+
+</section>
+
+{% endblock body %}

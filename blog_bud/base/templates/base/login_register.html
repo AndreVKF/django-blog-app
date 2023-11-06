@@ -1,0 +1,89 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block body %}
+
+{% if page == 'login' %}
+
+<div class="login_register__container">
+  <div class="login_register__wrapper shadow_xl" >
+    <h2>Log In</h2>
+    <img class="navbar__logo_img" src="{% static 'images/Logo.svg' %}" alt="Logo">
+  
+    <form method="POST" action="" class="login_register__form">
+      {% csrf_token %}
+  
+      <div class="input_container">
+        <input type="email" name="email" id="email" placeholder="Email" >
+      </div>
+  
+      <div class="input_container">
+        <input type="password" name="password" id="password" placeholder="Password" >
+      </div>
+      
+      <button class="primary_button large_button">Login</button>
+
+      {% if messages %}
+      <div class="alert_messages">
+        {% for message in messages %}
+        <p>{{message}}</p>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </form>
+  
+    <span class="login_register__footer">
+      Haven't signed up yet?
+      <a class="login_register__footer_change_login" href="{% url 'register' %}">Sign up</a>
+    </span>
+  </div>
+
+</div>
+
+{% else %}
+<div class="login_register__container">
+  <div class="login_register__wrapper shadow_xl" >
+    <h2>Register</h2>
+    <img class="navbar__logo_img" src="{% static 'images/Logo.svg' %}" alt="Logo">
+  
+    <form method="POST" action="" class="login_register__form">
+      {% csrf_token %}
+  
+      <div class="input_container">
+        <input type="text" name="username" id="username" placeholder="Username" >
+      </div>
+
+      <div class="input_container">
+        <input type="email" name="email" id="username" placeholder="Email" >
+      </div>
+  
+      <div class="input_container">
+        <input type="password" name="password" id="password" placeholder="Password" >
+      </div>
+
+      <div class="input_container">
+        <input type="password" name="confirm_password" id="confirm_password" placeholder="Confirm Password" >
+      </div>
+  
+      <button class="primary_button large_button">Login</button>
+
+      {% if messages %}
+      <div class="alert_messages">
+        {% for message in messages %}
+        <p>{{message}}</p>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </form>
+  
+    <span class="login_register__footer">
+      Already signed up ?
+      <a class="login_register__footer_change_login" href="{% url 'login' %}">Log in</a>
+    </span>
+  </div>
+
+</div>
+
+{% endif %}
+
+{% endblock body %}

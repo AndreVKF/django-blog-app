@@ -1,0 +1,30 @@
+{% extends 'main.html' %}
+
+{% block body %}
+
+<main class="base__main_container">
+
+  <aside>
+    {% include 'base/topics_component.html' %}
+
+  </aside>
+
+  <section>
+    <h2 class="home__header" >STUDY ROOM</h2>
+    <span class="home__room_count_span" >{{room_count}} rooms available</span>
+    <span class="link_span">
+      <a href="{% url 'create-room' %}">+ Create Room</a>
+    </span>
+  
+    {% include 'base/feed_component.html' %}
+    
+
+  </section>
+
+  <section>
+    {% include 'base/activity_component.html' %}
+  </section>
+
+</main>
+
+{% endblock body %}

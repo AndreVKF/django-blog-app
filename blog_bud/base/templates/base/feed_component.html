@@ -1,0 +1,34 @@
+
+{% load static %}
+<div class="feed_component__container shadow_xl">
+  {% for room_info in rooms_info %}
+    <div class="feed_component__wrapper shadow_xl">
+      <div class="feed_component__room_info">
+        <div class="feed_component__user_and_created">
+          <a class="feed_component__user" href="{% url 'user-profile' room_info.room.host.id %}">@{{room_info.room.host.username}}</a>
+          <span class="feed_component__room_creation" >{{room_info.room.created|timesince}}</span>
+        </div>
+        <a href="{% url 'room' room_info.room.id %}">{{room_info.room.name}}</a>
+      </div>
+      
+      
+      <div class="feed_component__users_tag">
+        <hr>
+        <div class="feed_component__footer_container">
+          <div class="feed_component__footer_participants">
+            <img class="feed_component__users_svg" src="{% static 'images/users.svg' %}" alt="users-svg">
+            <span>{{room_info.participants_count}} joined</span>
+          </div>
+
+          <div class="feed_component__footer_tags">
+            {% if request.user == room_info.room.host %}
+            <button class="primary_button"><a href="{% url 'update-room' room_info.room.id %}">Edit</a></button>
+            <button class="warning_button"><a href="{% url 'delete-room' room_info.room.id %}">Delete</a></button>
+            {% endif %}
+            <span class="feed_component__topic">{{room_info.room.topic.name}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  {% endfor %}
+</div>

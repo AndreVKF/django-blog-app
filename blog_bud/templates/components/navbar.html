@@ -1,0 +1,42 @@
+{% load static %}
+<header class="navbar__header">
+  <nav>
+    <a class="navbar__logo" href="/">
+      <img class="navbar__logo_img" src="{% static 'images/Logo.svg' %}" alt="Logo">
+      <span class="navbar__logo_span">Blog Bud</span>
+    </a>
+
+  </nav>
+
+  <form class="navbar__search_form" method="GET" action="{% url 'home' %}">
+    <div class="input_container">
+      <input class="navbar__search_input" type="text" name="q" id="q" placeholder="Search rooms..." >
+    </div>
+  </form>
+
+  <div class="navbar__user_info">
+    {% if request.user.is_authenticated %}
+    <div class="navbar__user_description">
+      <p>Hello {{request.user}}</p>
+      <span class="link_span">
+        <a href="{% url 'user-profile' request.user.id %}">{{request.user.email}}</a>
+      </span>
+    </div>
+
+    <div class="navbar__sign_status_wrapper">
+      <button class="primary_button">
+        <a href="{% url 'logout' %}">Log Out</a>
+      </button>
+    </div>
+
+    {% else %}
+    <div class="navbar__sign_status_wrapper">
+      <button class="primary_button">
+        <a href="{% url 'login' %}">Log In</a>
+      </button>
+    </div>
+    {% endif %}
+  </div>
+
+</header>
+<hr>

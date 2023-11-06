@@ -1,0 +1,29 @@
+<div class="activity_component__container">
+  <div class="activity_component__header_wrapper">
+    <h3>Recent Activity</h3>
+  </div>
+
+  <div class="activity_component__content_wrapper">
+    {% for room_message in room_messages %}
+      <div class="activity_component__message_container">
+        <div class="activity_component__activity_info_wrapper">
+          <a href="{% url 'user-profile' room_message.user.id %}">
+            @{{room_message.user}}
+          </a>
+          <span>{{room_message.created|timesince}}</span>
+          
+        </div>
+
+        <span class="activity_component__replied_to" >replied to post "<span>{{room_message.room}}</span>"
+        </span>
+    
+        <p class="activity_component__message">{{room_message}}</p>
+    
+        {% if request.user == room_message.user %}
+          <button class="warning_button activity_component__warning_button"><a href="{% url 'delete-message' room_message.id %}">Delete</a></button>
+        {% endif %}
+    
+      </div>
+    {% endfor %}
+  </div>
+</div>

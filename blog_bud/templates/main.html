@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="{% static 'styles/main.css' %}">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <script type="module" src="{% static 'js/main.js' %}" defer></script>
+  <title>Blog Bud</title>
+</head>
+<body>
+
+  {% if request.path != "/login/" and request.path != "/register/" %}
+
+  {% include 'components/navbar.html' %}
+
+  {% endif %}
+
+  <main class="main__content">
+    {% block body %}
+  
+    {% endblock body %}
+
+    
+  </main>
+  
+
+</body>
+</html>

@@ -1,0 +1,66 @@
+{% extends 'main.html' %}
+{% load static %}
+
+{% block body %}
+
+<div class="room__container">
+
+  <div class="room__description_container">
+    <div class="room__description">
+      <h1>{{room.name}}</h1>
+      <div class="room__description_p">
+        <p>{{room.description}}</p>
+      </div>
+      <h3>Conversation</h3>
+    </div>
+    <hr>
+    
+    <div class="room__messages_container">
+      {% for message in room_messages %}
+      <div class="room__message_wrapper">
+        
+        <div class="room__message_author_wrapper">
+          <div>
+            <span class="room__message_username">@{{message.user}}</span>
+            {% if request.user == message.user %}
+              <button class="warning_button room__message_delete_button"><a href="{% url 'delete-message' message.id %}">Delete</a></button>
+            {% endif %}
+          </div>
+
+          <span class="room__message_created">{{message.created|timesince}} ago</span>
+        </div>
+
+        <p class="room__message_message">{{message.body}}</p>
+      </div>
+      {% endfor %}
+    </div>
+
+    {% if request.user.is_authenticated %}
+    <form action="" method="POST" class="room__new_message_form">
+      {% csrf_token %}
+      <div class="input_container room__new_message_input">
+        <input type="text" name="message_body" id="message_body" placeholder="Write a message...">
+      </div>
+
+      <button class="primary_button room__new_message_button">Submit</button>
+    </form>
+    {% endif %}
+
+  </div>
+
+  <div class="room__participants_container">
+    <h3 class="room__participants_header">Participants</h3>
+
+    <div class="room__participants_wrapper">
+      {% for participant in participants %}
+        <div class="room__participant_wrapper">
+          <img class="room__participant_user_img" src="{% static 'images/user.svg' %}" alt="user svg">
+          <a href="{% url 'user-profile' participant.id  %}">@{{participant.username}}</a>
+        </div>
+        <hr class="room__participants_hr">
+      {% endfor %}
+    </div>
+  </div>
+</div>
+
+{% endblock body %}
