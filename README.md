@@ -18,12 +18,12 @@ Create an user or login with:
 - Create new messages in blog room;
 - Check latest sent messages;
 - User profile page with user statistics;
+- Deployed into fly.io with docker image;
 
 ## Stacks
 
 **Front-end:** Python, Django, HTML, CSS, Vanilla JavaScript
 
-** Back-end:**
-Python, Django, SqlLite
+** Back-end:** Python, Django, SqlLite, Docker
 
 **Deploy:** Fly.io
